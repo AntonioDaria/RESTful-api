@@ -82,5 +82,17 @@ app.post('/api/books', (req, res) => {
 	});
 });
 
+//route to api/updateBook
+app.put('/api/books/:_id', (req, res) => {
+  var id = req.params._id;
+  var book = req.body;
+	Book.updateBook(id, book, {}, (err, book) => {
+		if(err){
+			throw err;
+		}
+		res.json(book);
+	});
+});
+
 app.listen(3000);
 console.log('Running on port 3000...');
