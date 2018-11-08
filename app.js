@@ -39,7 +39,7 @@ app.post('/api/genres', (req, res) => {
 	});
 });
 
-//route to api/books
+//route to get api/books
 app.get('/api/books/', (req, res) => {
 	Book.getBooks((err, books) => {
 		if(err){
@@ -52,6 +52,17 @@ app.get('/api/books/', (req, res) => {
 //route to api/booksById
 app.get('/api/books/:_id', (req, res) => {
 	Book.getBookById(req.params._id, (err, book) => {
+		if(err){
+			throw err;
+		}
+		res.json(book);
+	});
+});
+
+//route to api/addBook
+app.post('/api/books', (req, res) => {
+  var book = req.body;
+	Book.addBook(book, (err, book) => {
 		if(err){
 			throw err;
 		}

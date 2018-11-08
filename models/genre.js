@@ -21,7 +21,7 @@ module.exports.getGenres = (callback, limit) => {
 	Genre.find(callback).limit(limit);
 }
 
-// Get Genres
+// Add Genres
 module.exports.addGenres = (genre, callback) => {
 	Genre.create(genre, callback);
 }
