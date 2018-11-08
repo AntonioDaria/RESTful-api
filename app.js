@@ -105,6 +105,17 @@ app.put('/api/books/:_id', (req, res) => {
 	});
 });
 
+//route to api/deleteBook
+app.delete('/api/books/:_id', (req, res) => {
+  var id = req.params._id;
+	Book.removeBook(id, (err, book) => {
+		if(err){
+			throw err;
+		}
+		res.json(book);
+	});
+});
+
 
 
 app.listen(3000);
