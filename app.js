@@ -39,6 +39,18 @@ app.post('/api/genres', (req, res) => {
 	});
 });
 
+//route to api/updateGenre
+app.put('/api/genres/:_id', (req, res) => {
+  var id = req.params._id;
+  var genre = req.body;
+	Genre.updateGenre(id, genre, {}, (err, genre) => {
+		if(err){
+			throw err;
+		}
+		res.json(genre);
+	});
+});
+
 //route to get api/books
 app.get('/api/books/', (req, res) => {
 	Book.getBooks((err, books) => {
