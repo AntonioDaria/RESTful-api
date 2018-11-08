@@ -3,6 +3,8 @@ var app = express();
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 
+app.use(bodyParser.json())
+
 Genre =require('./models/genre');
 Book =require('./models/book');
 
@@ -26,6 +28,17 @@ app.get('/api/genres', (req, res) => {
 	});
 });
 
+//route to api/addGenre
+app.post('/api/genres', (req, res) => {
+  var genre = req.body;
+	Genre.addGenres(genre, (err, genre) => {
+		if(err){
+			throw err;
+		}
+		res.json(genre);
+	});
+});
+
 //route to api/books
 app.get('/api/books/', (req, res) => {
 	Book.getBooks((err, books) => {
@@ -36,6 +49,7 @@ app.get('/api/books/', (req, res) => {
 	});
 });
 
+//route to api/booksById
 app.get('/api/books/:_id', (req, res) => {
 	Book.getBookById(req.params._id, (err, book) => {
 		if(err){
