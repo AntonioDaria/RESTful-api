@@ -3,6 +3,8 @@ var app = express();
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 
+//line 7 specifies what folder we want use as public directry on the client side
+app.use(express.static(__dirname+'/client'));
 app.use(bodyParser.json())
 
 Genre =require('./models/genre');
