@@ -30,4 +30,10 @@ myApp.controller('BooksController', ['$scope', '$http', '$location', '$routePara
 		});
 	}
 
+	$scope.removeBook = function(id){                    //gets id from parameter
+		var id = $routeParams.id;
+		$http.delete('/api/books/'+id).then(function(response){
+			window.location.href='#/books';
+		});
+	}
 }]);
