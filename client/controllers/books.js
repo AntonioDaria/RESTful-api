@@ -6,7 +6,7 @@ myApp.controller('BooksController', ['$scope', '$http', '$location', '$routePara
 
 	$scope.getBooks = function(){
 		$http.get('/api/books').then(function(response){
-			$scope.books = response.data; 
+			$scope.books = response.data;
 		});
 	}
 
@@ -16,4 +16,18 @@ myApp.controller('BooksController', ['$scope', '$http', '$location', '$routePara
 			$scope.book = response.data;
 		});
 	}
+
+	$scope.addBook = function(){
+		$http.post('/api/books/', $scope.book).then(function(response){
+			window.location.href='#/books';
+		});
+	}
+
+	$scope.updateBook = function(){
+		var id = $routeParams.id;                          //gets id from url
+		$http.put('/api/books/'+id, $scope.book).then(function(response){
+			window.location.href='#/books';
+		});
+	}
+
 }]);
